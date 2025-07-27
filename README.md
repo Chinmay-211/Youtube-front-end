@@ -16,15 +16,7 @@ This is a responsive front-end **YouTube Clone** built using pure **HTML** and *
 
 ---
 
-## 📸 Screenshots
 
-| Desktop View | Mobile View |
-|--------------|-------------|
-| ![Desktop Screenshot](./screenshots/desktop.png) | ![Mobile Screenshot](./screenshots/mobile.png) |
-
-> *(Add these images if available for better presentation.)*
-
----
 
 ## 🛠️ Technologies Used
 
