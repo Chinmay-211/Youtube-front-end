@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YouTube.com Clone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      p{
+        font-family:Roboto,Arial;
+        margin-top:0px;
+        margin-bottom:0px;
+        
+      }
+      body{
+        margin:0;
+        padding-top:80px;
+        padding-left:96px;
+        padding-right:24px;
+        background-color: rgb(247, 247, 247);
+
+
+      }
+
+      .thumbnail {
+        width: 100%;
+        
+      }
+
+    
+
+      .video-title {
+        width: 100%;
+        
+        font-size:14px;
+        font-weight:550;
+        line-height:20px;
+        margin-bottom: 10px;
+      }
+
+ 
+      .profile1{
+       
+        width:36px;
+        border-radius:25px;
+      }
+      
+      .thumbnail-row{
+        margin-bottom:8px;
+        position:relative;
+      }
+      .video-author{
+        font-size:12px;
+        color:rgb(96,96,96);
+        margin-bottom:4px;
+
+      }
+      .video-stats{
+        font-size:12px;
+        color:rgb(96,96,96);
+
+      }
+      .channel-info-grid{
+        display: grid;
+        grid-template-columns: 50px 1fr;
+      }
+      .video-grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap:16px;
+        row-gap:40px ;
+      }
+      @media (max-width:750px){
+        .video-grid{
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media(min-width:751px) and (max-width:999px){
+        .video-grid{
+            grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+      @media(min-width:1000px){
+        .video-grid{
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+      }
+
+      .header{
+        height:55px;
+        display:flex;
+        flex-direction:row;
+        justify-content: space-between;
+        position:fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        z-index:100;
+        background-color: white;
+        border-bottom-width:1px;
+        border-bottom-style:solid;
+        border-bottom-color:rgb(192,192,192)
+
+
+      }
+      .sidebar{
+        position: fixed;
+        left:0;
+        bottom:0;
+        top:55px;
+        background-color:white;
+        width:72px;
+        z-index:200;
+        padding-top:5px;
+      }
+      .left{
+        
+        
+        display:flex;
+        align-items:center;
+      }
+      .middle{
+        
+        flex:1;
+        margin-left:70px;
+        margin-right:35px;
+        max-width:500px;
+        display:flex;
+        align-items: center;
+      }
+      .right{
+        margin-right:20px;
+        width:180px;
+        display:flex;
+        align-items: center;
+        justify-content:space-between;
+        flex-shrink:0;
+      }
+      .menu{
+        height:24px;
+        margin-left:24px;
+        margin-right:20px;
+      }
+      .logo{
+        height:20px;
+      }
+      .search-logo{
+        height:40px;
+        width:60px;
+
+      }
+      .voice{
+        height:29px;
+        width:40px;
+
+      }
+      .search-bar{
+        flex:1;
+        height:34px;
+        padding-left: 10px;
+        font-size: 14px;
+        border-width:1px;
+        border-style:solid;
+        border-color:rgb(192,192,192);
+        border-radius:2px;
+        box-shadow:inset 1px 2px 3px rgba(0,0,0,0.05);
+        width:0px;
+        
+      }
+     
+        .search-bar::placeholder{
+                font-family:Roboto,Arial;
+                font-size:16px;
+
+        }
+        .search-logo{
+          height: 25px;
+          margin-top: 4px;
+          
+          
+
+
+        }
+        .search-button{
+          height: 38px;
+          width: 66px;
+          background-color: rgb(240, 240, 240);
+          border-width: 1px;
+          border-style: solid;
+          border-color: rgb(192, 192, 192);
+          margin-left: -1px;
+          margin-right: 10px;
+          position:relative
+        }
+        .voice-button{
+          height:38px;
+          width:38px;
+          border-radius:19px;
+          border: none;
+          background-color: rgb(245, 245, 245);
+
+          
+          
+         
+        }
+        .voice{
+          height: 24px;
+       
+       
+
+          
+
+          
+          
+        }
+        .upload{
+          height: 24px;
+
+        }
+        .apps{
+          height: 24px;
+
+        }
+        .noti{
+          height: 24px;
+
+        }
+        .my-profile{
+          border-radius: 50%;
+        }
+        .my{
+          height: 32px;
+          border-radius: none;
+          width: 36px;
+          height: 36px;             
+          border-radius: 50%;       
+          object-fit: cover;
+
+
+        }
+        .vedio-time{
+          background-color:black;
+          color:white;
+          position:absolute;
+          bottom:8px;
+          right:5px;
+          font-family: Roboto,Arial;
+          font-size:12px;
+          font-weight:500px;
+          padding: 4px ;
+          border-radius: 2;
+
+
+        }
+        
+        .notifications-container{
+          position:relative;
+
+        }
+       
+        .notification-count{
+          position:absolute;
+          top: -2px;
+          right:-5px;
+          background-color:rgb(194, 0, 0);
+          font-family: Roboto,Arial;
+          font-size: 11px;
+          padding-left: 5px;
+          padding-right: 5px;
+          padding-top: 2px;
+          padding-bottom: 2px;
+          border-radius:10px;
+          color:white;
+        }
+        
+        .sidebar-link{
+          display:flex;
+          justify-content: center;
+          align-items:center;
+          flex-direction:column;
+          cursor:pointer;
+
+         
+          height:74px;
+         
+        }
+        .sidebar-link:hover{
+          background-color:rgb(233, 233, 233)
+        }
+        .sidebar-link img{
+          height:24px;
+          margin-bottom: 4px;
+        }
+        .sidebar-link div{
+          font-family: Roboto,Arial;
+          font-size:10px;
+
+        }
+        .search-button .tooltip,
+        .voice-button .tooltip,
+        .upload-icon-container .tooltip{
+          font-family: Roboto,Arial;
+          position: absolute;
+          background-color: gray;
+          color:white;
+          padding-top:4px;
+          padding-bottom:4px;
+          padding-right:8px;
+          padding-left:8px;
+          border-radius: 2px;
+          font-size:12px;
+          bottom:-30px;
+          opacity:0;
+          transition: opacity 0.15s;
+          pointer-events:none;
+          white-space:nowrap;
+
+        }
+        .search-button:hover .tooltip,
+        .voice-button:hover .tooltip,
+        .upload-icon-container:hover .tooltip{
+          opacity:1;
+        }
+        .search-button,
+        .voice-button,
+        .upload-icon-container{
+          position: relative;
+          display:flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="left">
+        <img  class="menu" src="hamburger-menu.svg">
+        <img  class="logo" src="youtube-logo.svg">
+      </div>
+      <div class="middle">
+        <input class="search-bar" type="text" placeholder="Search">
+        <button class="search-button">
+          <img class="search-logo" src="search.svg">
+          <div class="tooltip">Search</div>
+          
+        </button>
+        <button class="voice-button">
+          <img class="voice" src="voice-search-icon.svg">
+          <div class="tooltip">Search with your voice</div>
+        </button>
+
+      </div>
+      <div class="right">
+        <div class="upload-icon-container" >
+          <img class="upload" src="upload.svg">
+          <div class="tooltip">create</div>
+        </div>
+        
+        <img class="apps" src="youtube-apps.svg">
+        <div class="notifications-container">
+          <img  class="noti" src="notifications.svg">
+          <div class="notification-count">3</div>
+        </div>
+        <div class="my-profile">
+           <img  class="my" src="marvels-spider-man-3840x2160-13520.jpg">
+        </div>
+       
+      </div> 
+     
+
+    </div>
+    <div class="sidebar">
+      <div class="sidebar-link">
+        <img src="home.svg">
+        <div>Home</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="explore.svg">
+        <div>Explore</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="subscriptions.svg">
+        <div>Subscriptions</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="originals.svg">
+        <div>Originals</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="youtube-music.svg">
+        <div>You Tube Music</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="library.svg">
+        <div>Library</div>
+      </div>
+    </div>
+   
+    <div class="video-grid">
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-1.webp">
+          <div class="vedio-time">14:20</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-1.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Talking Tech and AI with Google CEO Sundar Pichai!
+            </p>
+            <p class="video-author">
+              Marques Brownlee
+            </p>
+            <p class="video-stats">
+              3.4M views &#183; 6 months ago
+            </p>
+          </div>
+         
+        </div>
+      </div>
+  
+      
+      
+      
+      
+      
+      
+      
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-2.webp">
+          <div class="vedio-time">8:22</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-2.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Try Not To Laugh Challenge #9
+            </p>
+            <p class="video-author">
+              Markiplier
+            </p>
+            <p class="video-stats">
+              19M views &#183; 4 years ago
+            </p>
+  
+          </div>
+         
+        </div>
+        
+  
+       
+      </div>
+  
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="marvels-spider-man-3840x2160-13286.jpeg">
+          <div class="vedio-time">9:13</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-5.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Marvel Spidy 4!
+            </p>
+            <p class="video-author">
+              Mr.Ninja
+            </p>
+            <p class="video-stats">
+              34M views &#183; 6 months ago
+            </p>
+          </div>
+         
+        </div>
+        
+  
+        
+      </div>
+  
+  
+  
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-4.webp">
+          <div class="vedio-time">14:20</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-4.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Variables!!!!
+            </p>
+            <p class="video-author">
+              Ve!
+            </p>
+            <p class="video-stats">
+              19M views &#183; 4 years ago
+            </p>
+  
+          </div>
+         
+        </div>
+        
+  
+       
+      </div>
+  
+  
+  
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-5.webp">
+          <div class="vedio-time">9:13</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-5.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Algorithm
+            </p>
+            <p class="video-author">
+              codeNinja
+            </p>
+            <p class="video-stats">
+              3M views &#183; 2 months ago
+            </p>
+          </div>
+         
+        </div>
+        
+  
+        
+      </div>
+  
+  
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-6.webp">
+          <div class="vedio-time">9:13</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-6.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              #day 2 guys! New Challenge
+            </p>
+            <p class="video-author">
+              Mr.Beast
+            </p>
+            <p class="video-stats">
+              19M views &#183; 4 years ago
+            </p>
+  
+          </div>
+         
+        </div>
+        
+  
+       
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-1.webp">
+          <div class="vedio-time">14:20</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-1.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Talking Tech and AI with Google CEO Sundar Pichai!
+            </p>
+            <p class="video-author">
+              Marques Brownlee
+            </p>
+            <p class="video-stats">
+              3.4M views &#183; 6 months ago
+            </p>
+          </div>
+         
+        </div>
+      </div>
+  
+      
+      
+      
+      
+      
+      
+      
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-2.webp">
+          <div class="vedio-time">8:22</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-2.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Try Not To Laugh Challenge #9
+            </p>
+            <p class="video-author">
+              Markiplier
+            </p>
+            <p class="video-stats">
+              19M views &#183; 4 years ago
+            </p>
+  
+          </div>
+         
+        </div>
+        
+  
+       
+      </div>
+  
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="marvels-spider-man-3840x2160-13286.jpeg">
+          <div class="vedio-time">9:13</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-5.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Marvel Spidy 4!
+            </p>
+            <p class="video-author">
+              Mr.Ninja
+            </p>
+            <p class="video-stats">
+              34M views &#183; 6 months ago
+            </p>
+          </div>
+         
+        </div>
+        
+  
+        
+      </div>
+  
+  
+  
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-4.webp">
+          <div class="vedio-time">14:20</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-4.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Variables!!!!
+            </p>
+            <p class="video-author">
+              Ve!
+            </p>
+            <p class="video-stats">
+              19M views &#183; 4 years ago
+            </p>
+  
+          </div>
+         
+        </div>
+        
+  
+       
+      </div>
+  
+  
+  
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-5.webp">
+          <div class="vedio-time">9:13</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-5.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              Algorithm
+            </p>
+            <p class="video-author">
+              codeNinja
+            </p>
+            <p class="video-stats">
+              3M views &#183; 2 months ago
+            </p>
+          </div>
+         
+        </div>
+        
+  
+        
+      </div>
+  
+  
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnail-6.webp">
+          <div class="vedio-time">9:13</div>
+        </div>
+        <div class="channel-info-grid">
+          <div class="channel-pic1">
+            <img class="profile1" src="channel-6.jpeg">
+          </div>
+          <div class="channel-info">
+            <p class="video-title">
+              #day 2 guys! New Challenge
+            </p>
+            <p class="video-author">
+              Mr.Beast
+            </p>
+            <p class="video-stats">
+              19M views &#183; 4 years ago
+            </p>
+  
+          </div>
+         
+        </div>
+        
+  
+       
+      </div>
+    </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
